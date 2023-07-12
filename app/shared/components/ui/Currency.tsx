@@ -16,6 +16,6 @@ function Currency({ value }: Props): JSX.Element {
 
   if (!isMounted) return <></>;
 
-  return <div className='font-semibold'>{currencyFormatter.format(Number(value))}</div>;
+  return <span className='font-semibold'>{currencyFormatter.format(Number(value))}</span>;
 }
 export default Currency;

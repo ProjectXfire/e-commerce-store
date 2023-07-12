@@ -39,3 +39,21 @@ export async function getProducts(query?: IQuery): Promise<IResponse<IProduct[]>
     };
   }
 }
+
+export async function getProduct(id: string): Promise<IResponse<IProduct | null>> {
+  try {
+    const { data: resData } = await axios.get<IResponse<IProduct>>(`${URL}/${id}`);
+    const { data, message } = resData;
+    return {
+      data,
+      errorMessage: null,
+      message
+    };
+  } catch (error) {
+    return {
+      data: null,
+      errorMessage: handleError(error),
+      message: null
+    };
+  }
+}

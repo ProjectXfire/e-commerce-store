@@ -9,7 +9,7 @@ export interface IProduct {
   category: ICategory;
   size: ISize;
   color: IColor;
-  images: IImages[];
+  images: IImage[];
 }
 
 interface ISize {
@@ -24,7 +24,7 @@ interface IColor {
   value: string;
 }
 
-interface IImages {
+export interface IImage {
   id: string;
   url: string;
 }

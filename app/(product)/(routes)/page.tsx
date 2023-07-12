@@ -1,6 +1,6 @@
-import { getBillboard, getProducts } from './services';
-import { Container } from '../shared/components/ui';
-import { Billboard, Products } from './components';
+import { getBillboard, getProducts } from '../services';
+import { Container } from '@/app/shared/components/ui';
+import { Billboard, Products } from '../components';
 
 export const revalidate = 0;
 
