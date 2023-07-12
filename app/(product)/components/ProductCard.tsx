@@ -1,6 +1,7 @@
 'use client';
 
 import NextImage from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Expand, ShoppingCart } from 'lucide-react';
 import { type IProduct } from '@/app/core/interfaces';
 import { Button, Currency } from '@/app/shared/components/ui';
@@ -10,8 +11,17 @@ interface Props {
 }
 
 function ProductCard({ data }: Props): JSX.Element {
+  const router = useRouter();
+
+  const handleClick = (): void => {
+    router.push(`/product/${data.id}`);
+  };
+
   return (
-    <article className='bg-white group cursor-pointer rounded-xl border p-3 space-y-4'>
+    <article
+      onClick={handleClick}
+      className='bg-white group cursor-pointer rounded-xl border p-3 space-y-4'
+    >
       <div className='aspect-square rounded-xl bg-gray-100 relative overflow-hidden'>
         <NextImage className='object-cover' fill src={data.images[0].url} alt={data.name} />
         <div className='opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5'>
