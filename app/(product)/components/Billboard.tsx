@@ -6,7 +6,7 @@ interface Props {
 
 function Billboard({ data }: Props): JSX.Element {
   return (
-    <div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden'>
+    <section className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden'>
       <div
         className='rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden'
         style={{ backgroundImage: `url(${data?.imageUrl})`, backgroundSize: 'cover' }}
@@ -17,7 +17,7 @@ function Billboard({ data }: Props): JSX.Element {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 export default Billboard;
