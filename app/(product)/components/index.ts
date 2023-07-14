@@ -1,4 +1,6 @@
 export { default as Billboard } from './Billboard';
+export { default as Cart } from './Cart';
+export { default as CartItem } from './CartItem';
 export { default as Filter } from './Filter';
 export { default as Gallery } from './Gallery';
 export { default as GalleryTab } from './GalleryTab';
@@ -8,3 +10,4 @@ export { default as ModalProviders } from './ModalProviders';
 export { default as PreviewModal } from './PreviewModal';
 export { default as ProductCard } from './ProductCard';
 export { default as Products } from './Products';
+export { default as Summary } from './Summary';

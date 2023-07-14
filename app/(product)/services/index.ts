@@ -1,3 +1,4 @@
+export * from './Checkout';
 export * from './billboard';
 export * from './category';
 export * from './color';
