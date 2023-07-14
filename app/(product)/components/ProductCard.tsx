@@ -7,6 +7,7 @@ import { Expand, ShoppingCart } from 'lucide-react';
 import { usePreviewModal } from '../states';
 import { type IProduct } from '@/app/core/interfaces';
 import { Button, Currency } from '@/app/shared/components/ui';
+import { useCart } from '@/app/core/states';
 
 interface Props {
   data: IProduct;
@@ -14,6 +15,7 @@ interface Props {
 
 function ProductCard({ data }: Props): JSX.Element {
   const router = useRouter();
+  const { addItem } = useCart();
   const { opening } = usePreviewModal();
 
   const handleClick = (): void => {
@@ -23,6 +25,11 @@ function ProductCard({ data }: Props): JSX.Element {
   const onPreview: MouseEventHandler<HTMLButtonElement> = (e): void => {
     e.stopPropagation();
     opening(data);
+  };
+
+  const addToCart: MouseEventHandler<HTMLButtonElement> = (e): void => {
+    e.stopPropagation();
+    addItem(data);
   };
 
   return (
@@ -41,7 +48,11 @@ function ProductCard({ data }: Props): JSX.Element {
             >
               <Expand className='text-gray-600' size={20} />
             </Button>
-            <Button type='button' className='bg-white rounded-full p-[0px] w-10'>
+            <Button
+              type='button'
+              className='bg-white rounded-full p-[0px] w-10'
+              onClick={addToCart}
+            >
               <ShoppingCart className='text-gray-600' size={20} />
             </Button>
           </div>
