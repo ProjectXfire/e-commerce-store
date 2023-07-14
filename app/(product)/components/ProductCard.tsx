@@ -1,8 +1,10 @@
 'use client';
 
 import NextImage from 'next/image';
+import { type MouseEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
 import { Expand, ShoppingCart } from 'lucide-react';
+import { usePreviewModal } from '../states';
 import { type IProduct } from '@/app/core/interfaces';
 import { Button, Currency } from '@/app/shared/components/ui';
 
@@ -12,9 +14,15 @@ interface Props {
 
 function ProductCard({ data }: Props): JSX.Element {
   const router = useRouter();
+  const { opening } = usePreviewModal();
 
   const handleClick = (): void => {
     router.push(`/product/${data.id}`);
+  };
+
+  const onPreview: MouseEventHandler<HTMLButtonElement> = (e): void => {
+    e.stopPropagation();
+    opening(data);
   };
 
   return (
@@ -26,7 +34,11 @@ function ProductCard({ data }: Props): JSX.Element {
         <NextImage className='object-cover' fill src={data.images[0].url} alt={data.name} />
         <div className='opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5'>
           <div className='flex gap-x-6 justify-center'>
-            <Button type='button' className='bg-white rounded-full p-[0px] w-10'>
+            <Button
+              type='button'
+              className='bg-white rounded-full p-[0px] w-10'
+              onClick={onPreview}
+            >
               <Expand className='text-gray-600' size={20} />
             </Button>
             <Button type='button' className='bg-white rounded-full p-[0px] w-10'>
