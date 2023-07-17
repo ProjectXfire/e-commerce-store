@@ -15,8 +15,12 @@ function Summary(): JSX.Element {
 
   const onCheckout = async (): Promise<void> => {
     const ids = items.map((i) => i.id);
-    const { data } = await checkout(ids);
-    window.location = data.url;
+    const { data, errorMessage } = await checkout(ids);
+    if (errorMessage) {
+      toast.error(errorMessage);
+      return;
+    }
+    window.location = data as any;
   };
 
   useEffect(() => {
@@ -24,7 +28,7 @@ function Summary(): JSX.Element {
       toast.success('Payment completed');
       removeAll();
     }
-    if (searchParams.get('cancel')) {
+    if (searchParams.get('canceled')) {
       toast.error('Something went wrong!');
     }
   }, [searchParams, removeAll]);

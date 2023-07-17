@@ -4,9 +4,9 @@ import { handleError } from '@/app/shared/utils';
 
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/checkout`;
 
-export async function checkout(ids: string[]): Promise<IResponse<any>> {
+export async function checkout(ids: string[]): Promise<IResponse<string | null>> {
   try {
-    const { data: resData } = await axios.post<IResponse<any>>(`${URL}/checkout`, {
+    const { data: resData } = await axios.post<IResponse<string | null>>(URL, {
       productIds: ids
     });
     const { data, message } = resData;
@@ -17,7 +17,7 @@ export async function checkout(ids: string[]): Promise<IResponse<any>> {
     };
   } catch (error) {
     return {
-      data: [],
+      data: null,
       errorMessage: handleError(error),
       message: null
     };
